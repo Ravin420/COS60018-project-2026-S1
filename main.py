@@ -195,7 +195,7 @@ def load_image(path, size):
 
 
 def create_items():
-    """Create item rectangles and collected status."""
+    """Create item rectangles, collected status, and preload images."""
     game_items = []
 
     for item in ITEMS:
@@ -203,6 +203,10 @@ def create_items():
         x, y = item["position"]
         new_item["rect"] = pygame.Rect(x, y, ITEM_SIZE, ITEM_SIZE)
         new_item["collected"] = False
+
+        new_item["small_image"] = load_image(new_item["image"], (60, 60))
+        new_item["large_image"] = load_image(new_item["image"], (180, 180))
+
         game_items.append(new_item)
 
     return game_items
@@ -358,7 +362,7 @@ def main():
             # Draw items
             for item in items:
                 if not item["collected"]:
-                    small_image = load_image(item["image"], (60, 60))
+                    small_image = item["small_image"]
 
                     if small_image:
                         screen.blit(small_image, (item["rect"].x - 5, item["rect"].y - 5))
@@ -417,7 +421,7 @@ def main():
             draw_text(current_item["name"], 36, WIDTH // 2, 130, RED)
 
             # Show selected item image
-            image = load_image(current_item["image"], (180, 180))
+            image = current_item["large_image"]
 
             if image:
                 screen.blit(image, (WIDTH // 2 - 90, 170))
