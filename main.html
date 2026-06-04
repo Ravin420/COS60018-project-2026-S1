@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module main</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">main</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cravin%5Conedrive%20-%20swinburne%20university%5Cdocuments%5Cgithub%5Ccos60018-project-2026-s1%5Cmain.py">c:\users\ravin\onedrive - swinburne university\documents\github\cos60018-project-2026-s1\main.py</a></td></tr></table>
+    <p><span class="code">Choul&nbsp;Chnam&nbsp;Thmey&nbsp;Quest<br>
+&nbsp;<br>
+A&nbsp;small&nbsp;Pygame&nbsp;educational&nbsp;game&nbsp;about&nbsp;Khmer&nbsp;New&nbsp;Year.<br>
+The&nbsp;player&nbsp;collects&nbsp;cultural&nbsp;items,&nbsp;reads&nbsp;their&nbsp;meaning,&nbsp;and&nbsp;answers<br>
+a&nbsp;final&nbsp;quiz&nbsp;based&nbsp;on&nbsp;the&nbsp;information&nbsp;learned.</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="pygame.html">pygame</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-create_items"><strong>create_items</strong></a>()</dt><dd><span class="code">Create&nbsp;item&nbsp;rectangles,&nbsp;collected&nbsp;status,&nbsp;and&nbsp;preload&nbsp;images.</span></dd></dl>
+ <dl><dt><a name="-draw_detail_box"><strong>draw_detail_box</strong></a>(item)</dt><dd><span class="code">Draw&nbsp;the&nbsp;learning&nbsp;box&nbsp;for&nbsp;the&nbsp;collected&nbsp;item.</span></dd></dl>
+ <dl><dt><a name="-draw_text"><strong>draw_text</strong></a>(text, size, x, y, color=(20, 20, 20), center=True)</dt><dd><span class="code">Draw&nbsp;text&nbsp;on&nbsp;the&nbsp;game&nbsp;screen.</span></dd></dl>
+ <dl><dt><a name="-draw_top_bar"><strong>draw_top_bar</strong></a>(score, learned_items, highscore, time_left)</dt><dd><span class="code">Draw&nbsp;the&nbsp;score&nbsp;bar&nbsp;at&nbsp;the&nbsp;top.</span></dd></dl>
+ <dl><dt><a name="-draw_wrapped_text"><strong>draw_wrapped_text</strong></a>(text, size, x, y, max_width, color=(20, 20, 20))</dt><dd><span class="code">Draw&nbsp;long&nbsp;text&nbsp;across&nbsp;multiple&nbsp;lines.</span></dd></dl>
+ <dl><dt><a name="-load_highscore"><strong>load_highscore</strong></a>()</dt><dd><span class="code">Load&nbsp;the&nbsp;high&nbsp;score&nbsp;from&nbsp;a&nbsp;text&nbsp;file.</span></dd></dl>
+ <dl><dt><a name="-load_image"><strong>load_image</strong></a>(path, size)</dt><dd><span class="code">Load&nbsp;and&nbsp;resize&nbsp;an&nbsp;image.&nbsp;Return&nbsp;None&nbsp;if&nbsp;the&nbsp;image&nbsp;is&nbsp;missing.</span></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><span class="code">Run&nbsp;the&nbsp;game.</span></dd></dl>
+ <dl><dt><a name="-reset_game"><strong>reset_game</strong></a>()</dt><dd><span class="code">Reset&nbsp;the&nbsp;game&nbsp;variables.</span></dd></dl>
+ <dl><dt><a name="-save_highscore"><strong>save_highscore</strong></a>(score)</dt><dd><span class="code">Save&nbsp;the&nbsp;high&nbsp;score&nbsp;to&nbsp;a&nbsp;text&nbsp;file.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>BLACK</strong> = (20, 20, 20)<br>
+<strong>BLUE</strong> = (70, 130, 220)<br>
+<strong>COLLECTION_TIME</strong> = 60<br>
+<strong>FPS</strong> = 60<br>
+<strong>GOLD</strong> = (235, 190, 60)<br>
+<strong>GREEN</strong> = (70, 170, 90)<br>
+<strong>GREY</strong> = (230, 230, 230)<br>
+<strong>HEIGHT</strong> = 650<br>
+<strong>HIGHSCORE_FILE</strong> = 'highscore.txt'<br>
+<strong>ITEMS</strong> = [{'answer': 'A', 'choices': ['A. Decorate homes and pagodas', 'B. Repair motorbikes', 'C. Build roads'], 'color': (150, 90, 180), 'detail': 'Flowers are used during Khmer New Year to decora...odas. They show beauty, respect, and good wishes.', 'image': 'images/flower.jpg', 'name': 'Flower', 'points': 10, 'position': (130, 160), 'question': 'Flowers are used during Khmer New Year to:'}, {'answer': 'B', 'choices': ['A. Anger', 'B. Blessing and cleansing', 'C. Shopping'], 'color': (70, 130, 220), 'detail': 'Water can symbolise blessing, respect, cleansing, and a fresh start during Khmer New Year.', 'image': 'images/water.png', 'name': 'Water Bowl', 'points': 15, 'position': (370, 180), 'question': 'Water can symbolise:'}, {'answer': 'B', 'choices': ['A. Is only decoration', 'B. Brings family and community together', 'C. Is used for sport'], 'color': (230, 130, 50), 'detail': 'Families prepare and share food during Khmer New.... This helps bring family and community together.', 'image': 'images/food.jpg', 'name': 'Traditional Food', 'points': 20, 'position': (620, 160), 'question': 'Traditional food is important because it:'}, {'answer': 'B', 'choices': ['A. Watch movies', 'B. Pray and give respect', 'C. Play video games'], 'color': (235, 190, 60), 'detail': 'Many Cambodian families visit pagodas to pray, give respect, and remember good values.', 'image': 'images/pagoda.jpg', 'name': 'Pagoda', 'points': 25, 'position': (230, 350), 'question': 'Many Cambodian families visit pagodas to:'}, {'answer': 'A', 'choices': ['A. Community connection', 'B. Isolation', 'C. Traffic problems'], 'color': (70, 170, 90), 'detail': 'Traditional games are played during Khmer New Ye...create fun, friendship, and community connection.', 'image': 'images/game.png', 'name': 'Traditional Game', 'points': 30, 'position': (560, 370), 'question': 'Traditional games help create:'}]<br>
+<strong>ITEM_SIZE</strong> = 50<br>
+<strong>LIGHT_BLUE</strong> = (220, 235, 255)<br>
+<strong>LIGHT_YELLOW</strong> = (255, 245, 210)<br>
+<strong>ORANGE</strong> = (230, 130, 50)<br>
+<strong>PLAYER_SIZE</strong> = 40<br>
+<strong>PURPLE</strong> = (150, 90, 180)<br>
+<strong>RED</strong> = (190, 50, 50)<br>
+<strong>WHITE</strong> = (255, 255, 255)<br>
+<strong>WIDTH</strong> = 900<br>
+<strong>clock</strong> = &lt;Clock(fps=0.00)&gt;<br>
+<strong>screen</strong> = &lt;Surface(900x650x32 SW)&gt;</td></tr></table>
+</body></html>
