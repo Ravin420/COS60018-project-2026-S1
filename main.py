@@ -21,6 +21,7 @@ FPS = 60
 
 PLAYER_SIZE = 40
 ITEM_SIZE = 50
+COLLECTION_TIME = 60
 
 WHITE = (255, 255, 255)
 BLACK = (20, 20, 20)
@@ -220,15 +221,18 @@ def reset_game():
     score = 0
     quiz_index = 0
     current_item = None
+    time_left = COLLECTION_TIME
+    start_ticks = pygame.time.get_ticks()
 
-    return player, items, learned_items, score, quiz_index, current_item
+    return player, items, learned_items, score, quiz_index, current_item, time_left, start_ticks
 
 
-def draw_top_bar(score, learned_items, highscore):
+def draw_top_bar(score, learned_items, highscore, time_left):
     """Draw the score bar at the top."""
     pygame.draw.rect(screen, GOLD, (0, 0, WIDTH, 80))
-    draw_text(f"Score: {score}", 24, 100, 30)
-    draw_text(f"Collected: {len(learned_items)} / {len(ITEMS)}", 24, WIDTH // 2, 30)
+    draw_text(f"Score: {score}", 24, 90, 30)
+    draw_text(f"Collected: {len(learned_items)} / {len(ITEMS)}", 24, 300, 30)
+    draw_text(f"Time: {time_left}", 24, 520, 30)
     draw_text(f"High Score: {highscore}", 24, WIDTH - 130, 30)
 
 
@@ -252,7 +256,7 @@ def main():
     """Run the game."""
     highscore = load_highscore()
 
-    player, items, learned_items, score, quiz_index, current_item = reset_game()
+    player, items, learned_items, score, quiz_index, current_item, time_left, start_ticks = reset_game()
 
     game_state = "start"
     feedback = ""
@@ -273,7 +277,7 @@ def main():
 
             if game_state == "start":
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    player, items, learned_items, score, quiz_index, current_item = reset_game()
+                    player, items, learned_items, score, quiz_index, current_item, time_left, start_ticks = reset_game()
                     feedback = ""
                     game_state = "playing"
 
@@ -316,7 +320,7 @@ def main():
             elif game_state == "game_over":
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_r:
-                        player, items, learned_items, score, quiz_index, current_item = reset_game()
+                        player, items, learned_items, score, quiz_index, current_item, time_left, start_ticks = reset_game()
                         feedback = ""
                         game_state = "playing"
 
@@ -344,6 +348,16 @@ def main():
         elif game_state == "playing":
             keys = pygame.key.get_pressed()
 
+            seconds_passed = (pygame.time.get_ticks() - start_ticks) // 1000
+            time_left = max(0, COLLECTION_TIME - seconds_passed)
+
+            if time_left <= 0:
+                if score > highscore:
+                    highscore = score
+                    save_highscore(highscore)
+
+                game_state = "game_over"
+                
             if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 player.x -= 5
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
@@ -356,7 +370,7 @@ def main():
             player.x = max(0, min(WIDTH - PLAYER_SIZE, player.x))
             player.y = max(80, min(HEIGHT - PLAYER_SIZE, player.y))
 
-            draw_top_bar(score, learned_items, highscore)
+            draw_top_bar(score, learned_items, highscore, time_left)
             draw_text("Collect an item to learn about it.", 22, WIDTH // 2, 105, BLUE)
 
             # Draw items
@@ -399,7 +413,7 @@ def main():
         elif game_state == "learning":
             screen.fill(WHITE)
 
-            draw_top_bar(score, learned_items, highscore)
+            draw_top_bar(score, learned_items, highscore, time_left)
 
             # Draw remaining items
             for item in items:
