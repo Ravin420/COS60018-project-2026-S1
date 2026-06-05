@@ -4,72 +4,87 @@
 
 **Choul Chnam Thmey Quest**
 
-## Project Description
+## Project Overview
 
-This project is a small educational game created with Python and Pygame. The game is based on Khmer New Year, also known as **Choul Chnam Thmey**.
+My project is a small educational game made with Python and Pygame. The game is about Khmer New Year, which is called **Choul Chnam Thmey** in Khmer.
 
-The player moves around the screen and collects cultural items. After collecting each item, the game shows an image and a short explanation about its cultural meaning. After all items are collected, the player answers a final quiz based on the information they learned.
+In the game, the player moves around the screen and collects cultural items. After collecting an item, the game shows a picture and a short explanation about that item. At the end, the player answers a quiz based on what they learned.
 
-## Problem Being Addressed
+The game is not meant to explain all of Cambodian culture. It only introduces a few simple Khmer New Year items in an easy and respectful way.
 
-Some people may not know much about Khmer New Year or Cambodian cultural traditions. This game provides a simple and interactive way to introduce selected cultural items and their meaning.
+## Purpose of the Project
 
-The project does not try to fully represent Cambodian culture. Instead, it uses a few selected examples to support respectful cultural learning.
+The purpose of this project is to show how programming can be used for cultural learning.
 
-## Target Users
+I chose Khmer New Year because I am Cambodian, so this topic is personally meaningful to me. I wanted to make something simple that can help other people learn a little bit about Cambodian culture through a game.
 
-The target users are students, beginners, or people who want to learn basic information about Khmer New Year through a simple game.
+Instead of only reading information, the player can interact with the items, look at images, and answer questions. This makes the learning process more active and interesting.
 
-## Main Game Features
+## Cultural Context
+
+The game is based on Khmer New Year traditions. I included five cultural items:
+
+* Flower
+* Water Bowl
+* Traditional Food
+* Pagoda
+* Traditional Game
+
+Each item has a short explanation. For example, flowers are used for decoration and respect, while water can represent blessing and cleansing. Traditional food and games also show family and community connection.
+
+I tried to keep the explanations simple because the game is designed for beginner players.
+
+## Assumptions
+
+For this project, I made a few assumptions:
+
+* The player can use a keyboard.
+* The player can understand simple English.
+* The game only teaches basic information.
+* The game does not represent every Khmer New Year tradition.
+* The images are used only to help players understand the items visually.
+
+## Problem and Requirements
+
+The problem I wanted to address is that cultural learning can sometimes feel boring if it is only text-based. A simple game can make learning more interactive.
+
+The main requirements of the game are:
+
+* The player can move around the screen.
+* The player can collect items.
+* Each item shows an image and explanation.
+* The game has a countdown timer.
+* The quiz is based on the collected item information.
+* The game has a score and high score.
+* The program uses file input/output.
+* The program uses Pygame.
+
+## Main Features
+
+The main features are:
 
 * Start screen
 * Player movement
-* Cultural item collection
+* Item collection
+* Learning screen
 * Item images
-* Learning box with cultural explanation
 * Countdown timer
 * Final quiz
 * Score system
-* High score file saving
+* High score saving
 * Game over screen
 
-## Cultural Items
+## Game Flow
 
-The game includes five cultural items:
+The game uses different states:
 
-1. Flower
-2. Water Bowl
-3. Traditional Food
-4. Pagoda
-5. Traditional Game
+1. Start
+2. Playing
+3. Learning
+4. Quiz
+5. Game over
 
-Each item has:
-
-* Name
-* Image
-* Points
-* Position
-* Cultural explanation
-* Quiz question
-* Multiple-choice answers
-* Correct answer
-
-## Algorithm / Game Flow
-
-1. Start the game.
-2. Show the start screen.
-3. Player presses SPACE to begin.
-4. Player moves using WASD or arrow keys.
-5. Timer starts counting down.
-6. Player collects a cultural item.
-7. Game shows image and explanation of the item.
-8. Player presses SPACE to continue.
-9. Repeat until all items are collected.
-10. Start final quiz.
-11. Player answers quiz questions using A, B, or C.
-12. Add points for correct answers.
-13. Show final score and high score.
-14. Player can restart or quit.
+The player starts from the start screen. After pressing SPACE, the player begins collecting items. When an item is collected, the game changes to the learning screen. After all items are collected, the quiz begins. After the quiz, the game shows the final score.
 
 ## Pseudocode
 
@@ -85,46 +100,44 @@ Set timer
 
 WHILE game is running:
 
-    Check user input
+    Check player input
 
     IF game state is start:
         Show start screen
         IF player presses SPACE:
             Reset game
-            Change state to playing
+            Change to playing state
 
     ELSE IF game state is playing:
-        Start countdown timer
-        Move player using keyboard input
+        Count down timer
+        Move player using keyboard
+
+        IF player touches an item:
+            Mark item as collected
+            Add points
+            Save item for quiz
+            Show learning screen
 
         IF timer reaches zero:
-            Change state to game over
-
-        FOR each item:
-            IF player touches item:
-                Mark item as collected
-                Add item points to score
-                Save item into learned items list
-                Change state to learning
+            Change to game over
 
     ELSE IF game state is learning:
         Show item image
-        Show item cultural meaning
+        Show item explanation
         IF player presses SPACE:
             IF all items are collected:
-                Change state to quiz
+                Change to quiz state
             ELSE:
-                Change state to playing
+                Return to playing state
 
     ELSE IF game state is quiz:
-        Show quiz question based on learned item
-        IF player chooses correct answer:
-            Add points
-        Move to next question
+        Show question based on collected item
+        Check answer
+        Add points if correct
 
         IF all questions are answered:
-            Save high score if needed
-            Change state to game over
+            Save high score
+            Change to game over
 
     ELSE IF game state is game over:
         Show final score
@@ -139,120 +152,175 @@ END
 
 ## Flowchart Description
 
-The flowchart for this project follows this structure:
-
 ```text
 Start
   ↓
 Start Screen
   ↓
-Press SPACE?
+Press SPACE
   ↓
 Playing State
   ↓
-Move Player + Countdown Timer
+Move Player and Timer Counts Down
   ↓
-Collect Item?
+Collect Item
   ↓
 Learning Screen
   ↓
+Show Image and Explanation
+  ↓
 All Items Collected?
   ↓
-Final Quiz
+If No: Back to Playing
   ↓
-All Questions Answered?
+If Yes: Final Quiz
+  ↓
+Answer Questions
   ↓
 Game Over
   ↓
 Restart or Quit
 ```
 
-## Data Structures Used
+## Code Design
 
-The project uses a list of dictionaries to store cultural item information.
+I used functions to keep the code organised. This makes the program easier to read and easier to fix.
 
-Each item dictionary stores:
+Some important functions are:
 
-* `name`
-* `image`
-* `color`
-* `points`
-* `position`
-* `detail`
-* `question`
-* `choices`
-* `answer`
+* `load_highscore()` — loads the saved high score
+* `save_highscore()` — saves the high score
+* `draw_text()` — draws text on the screen
+* `draw_wrapped_text()` — draws longer text in multiple lines
+* `load_image()` — loads and resizes images
+* `create_items()` — creates the cultural items
+* `reset_game()` — resets the game
+* `draw_top_bar()` — shows score, timer, and high score
+* `draw_detail_box()` — shows item explanation
+* `main()` — runs the main game loop
 
-This makes the code easier to manage because all item information is stored in one structured place.
+## Data Structures
 
-## File Input / Output
+I used a list of dictionaries to store the cultural items.
 
-The game uses file input/output to save and load the high score.
+Each dictionary stores information like:
 
-* `load_highscore()` reads the saved high score from `highscore.txt`.
-* `save_highscore()` writes the new high score into `highscore.txt`.
+* item name
+* image path
+* position
+* points
+* explanation
+* quiz question
+* answer choices
+* correct answer
 
-This demonstrates basic file handling in Python.
+This design is useful because each item’s explanation and quiz question are stored together. This makes sure the quiz is related to what the player learned.
 
-## Decomposition
+## File Input and Output
 
-The program is broken into smaller functions to make it easier to read and manage.
+The game uses file input/output for the high score system.
 
-Important functions include:
+The function `load_highscore()` reads the high score from `highscore.txt`.
 
-* `load_highscore()`
-* `save_highscore()`
-* `draw_text()`
-* `draw_wrapped_text()`
-* `load_image()`
-* `create_items()`
-* `reset_game()`
-* `draw_top_bar()`
-* `draw_detail_box()`
-* `main()`
+The function `save_highscore()` writes the new high score to `highscore.txt`.
 
-## Tools Used
+This means the game can remember the best score even after the program closes.
 
-* Python
-* Pygame
-* VS Code
-* GitHub
-* GitHub Desktop
-* Pydoc
+## Design Decisions
 
-## GitHub Workflow
+### Using Pygame
 
-GitHub was used to track project progress. I used:
+I used Pygame because this project is a small game. Pygame is useful for creating a window, drawing images, handling keyboard input, and making a game loop.
 
-* Issues to plan tasks
-* Branches to work on changes separately
-* Commits to save progress
-* Pull requests to merge changes into the main branch
+### Using a Learning Screen
 
-Examples of work completed through GitHub:
+At first, collecting items was not educational enough. I changed the design so that each item shows its picture and explanation after being collected. This makes the game more connected to cultural learning.
 
-* Fixed image loading lag
-* Added collection timer
-* Added pydoc documentation
-* Updated README documentation
+### Quiz Based on Collected Items
+
+The quiz questions are based on the item details shown earlier. This makes the quiz fair because players can learn the answer before being tested.
+
+### Preloading Images
+
+The game was laggy at first because images were loading many times during gameplay. I fixed this by loading images once when the items are created. This made the movement smoother.
+
+### Adding a Timer
+
+I added a timer because the game felt too easy without it. The timer gives the player a simple challenge while collecting items.
 
 ## Testing
 
-The game was tested by checking that:
+I tested the game by checking:
 
-* The game starts correctly
-* The player can move
-* The timer counts down
-* Items can be collected
-* Item images appear
-* Learning box appears after each collection
-* Quiz questions match the item information
-* Score updates correctly
-* High score saves correctly
-* Restart and quit options work
+* The game opens without errors.
+* The player can move.
+* The player stays inside the screen.
+* Images appear correctly.
+* Items can be collected.
+* The learning box appears.
+* The quiz questions match the item information.
+* The timer counts down.
+* The score updates.
+* The high score saves.
+* Restart and quit work.
 
-## Responsible and Inclusive Programming
+## GitHub Workflow
 
-This project uses Cambodian cultural content, so it is important to be respectful. The game only introduces selected Khmer New Year items and does not claim to represent all Cambodian traditions.
+I used GitHub and GitHub Desktop during the project.
 
-The purpose is to create a small educational example that helps players learn about culture through programming.
+I uploaded the project to GitHub and used issues, branches, commits, and pull requests.
+
+Some examples of tasks I tracked were:
+
+* fixing image loading lag
+* adding a collection timer
+* updating README documentation
+* adding pydoc documentation
+* adding this design document
+
+Using GitHub helped me keep track of my changes and made the project workflow more organised.
+
+## Responsible Programming
+
+Because this project uses cultural content, I tried to keep it respectful. I did not try to represent all Cambodian traditions. I only used a few selected items as examples.
+
+This project helped me understand that programmers need to think carefully when using culture in software. Even a small game should avoid stereotypes and should explain things clearly.
+
+## Limitations
+
+The game has some limitations:
+
+* It only has five items.
+* It only has one level.
+* The explanations are short.
+* The graphics are simple.
+* The game is only in English.
+* There is no sound or music.
+
+## Future Improvements
+
+In the future, I could improve the game by adding:
+
+* Khmer language text
+* background music
+* sound effects
+* more cultural items
+* more quiz questions
+* better character design
+* more levels
+
+## Conclusion
+
+Overall, this project is a small but complete Pygame game. It combines basic programming skills with cultural learning.
+
+Through this project, I practised using functions, loops, conditionals, lists, dictionaries, file input/output, Pygame, VS Code, and GitHub.
+
+The game also helped me think about how programming can be used responsibly to share cultural knowledge in a simple way.
+
+## References
+
+Python Software Foundation. (2026). *pydoc — Documentation generator and online help system*. https://docs.python.org/3/library/pydoc.html
+
+Pygame developers. (2023). *Pygame documentation*. https://www.pygame.org/docs/
+
+Wikipedia contributors. (2026). *Cambodian New Year*. Wikipedia. https://en.wikipedia.org/wiki/Cambodian_New_Year
